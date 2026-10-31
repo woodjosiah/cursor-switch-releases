@@ -4,30 +4,28 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Cursor Switch</title>
         <item>
-            <title>1.0.0-beta.1</title>
-            <pubDate>Sat, 31 Oct 2026 14:13:53 -0500</pubDate>
-            <sparkle:version>2</sparkle:version>
-            <sparkle:shortVersionString>1.0.0-beta.1</sparkle:shortVersionString>
+            <title>1.0.0-beta.2</title>
+            <pubDate>Sat, 31 Oct 2026 15:41:49 -0500</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.0.0-beta.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Cursor Switch 1.0 beta 1
+            <description sparkle:format="markdown"><![CDATA[# Cursor Switch 1.0 beta 2
 
-The first shareable beta of Cursor Switch for macOS 15 and newer.
+Adds an optional **Open at login** setting in Customize….
 
-- Switch between your normal macOS cursor and a custom cursor from the menu bar.
-- Choose a shape, SF Symbol, emoji, or your own transparent image.
-- Adjust size and supported colors.
-- Align clicks to the topmost visible pixel, with manual positions available.
-- Get later beta builds through Check for Updates… in the menu bar.
-- The app stays out of the Dock and restores the native cursor when it quits.
+- Start Cursor Switch in the menu bar when you sign in to your Mac.
+- The setting reflects macOS’s current login-item status, including changes made in System Settings.
+- If macOS requires approval, a button takes you directly to Login Items settings.
+- Open at login is off by default. The app still launches with the normal cursor and no Dock icon.
 
 Custom cursors keep the same artwork over text and links. Cursor replacement uses
 a macOS compatibility layer; please report flicker, positioning issues, or trouble
 with fullscreen apps or multiple displays.
 ]]></description>
-            <enclosure url="https://github.com/woodjosiah/cursor-switch-releases/releases/download/v1.0.0-beta.1/CursorSwitch-1.0.0-beta.1.dmg" length="1596196" type="application/octet-stream" sparkle:edSignature="nUpgCKT+n85F3UPtSgfGYF5vE3RZ9boIa0xoGO95STOLrNPM4PIrXsJwNHAJxYPRLW63T5W6h5OqImbFkAIgCg=="></enclosure>
+            <enclosure url="https://github.com/woodjosiah/cursor-switch-releases/releases/download/v1.0.0-beta.2/CursorSwitch-1.0.0-beta.2.dmg" length="1622055" type="application/octet-stream" sparkle:edSignature="nHWS2BJOSbAMHTMnQxE4Jma9Qn+qnwhQ/qjodzGvF/pZGLbmc24+Fk9ngchrDQOqjH9W7KRDGEO8r0+B1IIQCg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: K2OSjukqcnGJyPFjmgnRVfXlsriTRkyT191l2gc0d1mOVcs/UEK16TIE+MusEdNm+B8nHNG9A8kvTF0/zyZ0Ag==
-length: 1886
+edSignature: DMErAtLDHwzXmLY+AahtZ1Y38ldCpIxAY+t5Ie1UpF6MAW3ukmIF8w9uSElFFwOV3C8lazZoIcxHoeU5w5TgDA==
+length: 1823
 -->

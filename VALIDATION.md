@@ -48,3 +48,25 @@ Environment: Apple Silicon, macOS 27.2 (26B118), Swift 6.4.2, Xcode beta toolcha
 - Taildrop to `jw-duo` was attempted twice, including after the user opened
   Tailscale. Both attempts returned 502; three Tailscale pings timed out. Delivery
   was not confirmed. A direct public download link was supplied as an alternative.
+
+## Open at login and beta 2 (build 3)
+
+- Added the opt-in Open at login setting using `SMAppService.mainApp`; no separate
+  persisted Boolean or launch-agent file is used. Approval and registration errors
+  are surfaced, and status refreshes when the app becomes active.
+- All 24 tests passed, including external consent changes, registration failure,
+  pending approval, and enabling/disabling without launch-time registration.
+- Live signed-app UI test on macOS 27.2: registration changed the toggle from off
+  to on, and unregistering changed it back off. Actual logout/login was not tested.
+- Source code and Git history published to the existing GitHub repository at the
+  user's request. Tracked history scan found no private keys or credential patterns.
+  Existing release assets and the beta 1 signed feed were preserved during merging.
+- Xcode initially returned No Accounts. After the user refreshed sign-in, beta 2
+  notarization, stapling, and Gatekeeper assessment succeeded.
+- Beta 2 universal DMG was signed and published before advancing the signed feed.
+  Anonymous download matched the local file exactly: 1,622,055 bytes, SHA-256
+  `96731fe11f5b7101cb740499e5078e63d6422b5a495f7763da0a9b368de5ad9a`.
+- At the user's request, installed the verified beta 1 DMG into
+  `/Applications/Cursor Switch.app` and launched it. Its UI showed
+  `Version 1.0.0-beta.1` and the existing cursor preferences. The actual upgrade
+  to beta 2 is intentionally left for the user to test.
