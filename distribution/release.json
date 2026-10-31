@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0-beta.1",
-  "build": "2",
+  "version": "1.0.0-beta.2",
+  "build": "3",
   "minimum_macos": "15.0",
   "bundle_id": "com.josiah.cursorswitch",
   "team_id": "WZ3MCNC4LD",

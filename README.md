@@ -5,7 +5,10 @@ cursor. The Dock icon is intentionally hidden, including while settings are open
 
 ## Use
 
-Open `dist/CursorSwitch.app` after building. Click the cursor icon in the menu bar
+[Download the latest beta](https://github.com/woodjosiah/cursor-switch-releases/releases),
+open the DMG, drag **Cursor Switch** to **Applications**, and open it from there.
+For local development, open `dist/CursorSwitch.app` after building.
+Click the cursor icon in the menu bar
 and choose **Default** or **Custom**. **Customize…** opens a live light/dark preview
 and four cursor sources:
 
@@ -28,6 +31,11 @@ are also available. Pixel detection runs only when the artwork changes.
 **Control–Option–Command–C** toggles modes from any app. Quit from the menu bar.
 The app launches in Default mode; the custom style persists between launches.
 Default mode uses your existing macOS pointer settings without changing them.
+
+To start the utility when you sign in, enable **Open at login** near the bottom of
+**Customize…**. It is off by default and uses macOS Login Items. If approval is
+needed, the setting provides a button to open System Settings. Launching at login
+keeps the Dock icon hidden and starts with the normal cursor.
 
 ## Build
 
@@ -73,7 +81,7 @@ submitting again. A notarytool Keychain profile can alternatively be supplied to
 
 Release artifacts are in `release-dist/`. Publish the versioned DMG and checksum
 as a GitHub Release, then commit the **unmodified signed** `appcast.xml` to the
-downloads repository's `main` branch. Publish the asset before updating a live
+repository's `main` branch. Publish the asset before updating a live
 feed. Never edit the signed XML manually. Keep the signing key in the login
 Keychain (account `com.josiah.cursorswitch`) backed up securely; it is not in Git.
 
@@ -119,9 +127,10 @@ permission, or Input Monitoring permission.
 
 ## Verification
 
-Twenty automated tests cover mode switching, repeated selection, rollback on hide
+Twenty-four automated tests cover mode switching, repeated selection, rollback on hide
 failure, persistence and migration, malformed preferences, size/color validation,
 active preview updates, transparent image import, invalid artwork, multi-scalar
-emoji, top-pixel detection, and hotspot math with negative display coordinates.
+emoji, top-pixel detection, hotspot math with negative display coordinates, and
+login-item approval, failure, and external state changes.
 Live desktop QA is separate
 from these tests; see `VALIDATION.md` for the current result.

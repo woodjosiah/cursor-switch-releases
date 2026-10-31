@@ -116,7 +116,10 @@ struct SettingsView: View {
                 Text("The shortcut is in use by another app. You can still switch from the menu bar.")
                     .font(.callout).foregroundStyle(.secondary)
             }
+            Divider()
+            LoginItemSettings()
             if updates.isConfigured {
+                Divider()
                 HStack {
                     Text("Version \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")")
                         .foregroundStyle(.secondary)

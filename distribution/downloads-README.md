@@ -28,5 +28,5 @@ Custom cursors keep the same appearance over text and links. This beta uses a
 macOS compatibility layer for system-wide cursor replacement, so fullscreen and
 multi-display behavior may vary between macOS releases.
 
-This repository contains release downloads and the update feed, not the app's
-source code.
+This repository includes the app's Swift source, tests, build scripts, release
+downloads, and signed update feed. See the main README for build instructions.
