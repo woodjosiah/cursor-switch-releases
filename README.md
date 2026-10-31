@@ -31,7 +31,8 @@ Default mode uses your existing macOS pointer settings without changing them.
 
 ## Build
 
-Requires macOS 15+ and a Swift 6.2+ toolchain. No third-party dependencies.
+Requires macOS 15+ and a Swift 6.2+ toolchain. Sparkle 2.10.1 is pinned in
+`Package.swift` / `Package.resolved` for beta updates.
 
 ```sh
 ./script/build_and_run.sh --verify
@@ -43,6 +44,38 @@ launching, `--logs` / `--telemetry` to stream process logs, or `--debug` for LLD
 Open `Package.swift` in Xcode for editing. The script stages and ad-hoc signs a
 local application at `dist/CursorSwitch.app`; it does not install anything into
 Applications or configure launch at login.
+
+## Shareable beta builds
+
+Download the beta DMG from
+[GitHub Releases](https://github.com/woodjosiah/cursor-switch-releases/releases).
+The release app is universal (Apple Silicon + Intel), Developer ID signed, and
+Apple-notarized. The signed DMG contains that stapled app and an Applications
+shortcut. Copy the app to Applications before running it or checking for updates.
+
+Release builds include **Check for Updates…** in the menu and settings. Sparkle
+uses HTTPS and verifies Ed25519 signatures on both the feed and update archive.
+Scheduled update reminders stay in the menu bar; the Dock stays hidden. Local
+development builds leave the updater disabled to avoid replacing your checkout.
+
+To ship another beta, increase `version` and numeric `build` in
+`distribution/release.json`, update `distribution/release-notes.md`, then:
+
+```sh
+python3 script/notarize_with_xcode.py
+python3 script/package_release.py --prepared-app .release-work/notarized/CursorSwitch.app --notarized-app
+```
+
+The first command uses the Developer ID identity and Xcode's existing Apple
+account session. If Apple is still processing, resume with `--finish` without
+submitting again. A notarytool Keychain profile can alternatively be supplied to
+`package_release.py --notary-profile PROFILE` to notarize both the app and DMG.
+
+Release artifacts are in `release-dist/`. Publish the versioned DMG and checksum
+as a GitHub Release, then commit the **unmodified signed** `appcast.xml` to the
+downloads repository's `main` branch. Publish the asset before updating a live
+feed. Never edit the signed XML manually. Keep the signing key in the login
+Keychain (account `com.josiah.cursorswitch`) backed up securely; it is not in Git.
 
 ## Cursor implementation
 
@@ -68,8 +101,9 @@ permission, or Input Monitoring permission.
 
 ## Limits
 
-- This is a local, ad-hoc-signed utility, not a notarized or App Store release.
-  Private WindowServer behavior can change after macOS updates.
+- Local development builds are ad-hoc signed; packaged beta apps are Developer
+  ID signed and notarized. This is not an App Store release. Private WindowServer
+  behavior can change after macOS updates.
 - A custom shape is fixed: it does not turn into the text I-beam, resize handles,
   link hand, or busy cursor. Default mode restores normal contextual cursors.
 - Software overlays may lag the hardware pointer, and games, protected system

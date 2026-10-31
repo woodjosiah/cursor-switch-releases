@@ -8,6 +8,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Intentional agent app: settings can become key, but no Dock icon appears.
         NSApp.setActivationPolicy(.accessory)
+        UpdateService.shared.start()
         CursorStore.shared.shortcutAvailable = shortcut.register()
         let workspace = NSWorkspace.shared.notificationCenter
         for name in [NSWorkspace.willSleepNotification, NSWorkspace.sessionDidResignActiveNotification,

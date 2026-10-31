@@ -3,3 +3,11 @@ dist/
 .DS_Store
 .swiftpm/
 artifacts/
+release-dist/
+.release-work/
+.env
+.env.*
+*.p12
+*.p8
+*.key
+__pycache__/

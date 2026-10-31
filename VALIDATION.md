@@ -24,4 +24,27 @@ Environment: Apple Silicon, macOS 27.2 (26B118), Swift 6.4.2, Xcode beta toolcha
 - Status-item menu interaction, fullscreen, physical multi-display transitions,
   sleep restoration, and drag-and-drop gesture remain manual QA items.
 
-This is a locally built, ad-hoc-signed app, not a notarized distribution.
+## Shareable beta 1 (build 2)
+
+- Sparkle 2.10.1 added and pinned; all 20 existing tests pass with the integration.
+- Universal executable contains arm64 and x86_64 slices, both with minimum macOS 15.0.
+- Main app and nested Sparkle code signed with Developer ID Application: Josiah
+  Wood (WZ3MCNC4LD), with hardened runtime. Deep/strict signature validation passed.
+- App submitted through Xcode for notarization. Stapling and validation passed;
+  Gatekeeper returned `accepted`, `source=Notarized Developer ID`.
+- The DMG is Developer ID signed and contains the stapled, notarized app. The DMG
+  itself was not separately submitted for notarization. Its checksum validates.
+- Sparkle archive and appcast signatures generated and verified. Signing private
+  key stays in the login Keychain; owner-only temporary exports were removed.
+- Published `v1.0.0-beta.1` to the public, downloads-only GitHub repository after
+  explicit user approval. The source remains in the local repository.
+- Downloaded the public DMG anonymously and compared it byte-for-byte to the
+  local artifact. The public signed appcast also matches exactly.
+- DMG: 1,596,196 bytes; SHA-256:
+  `2fe2d78c3fee8a3b527573ebd007683e1b55d946708683c15759f9368af6567d`.
+- Packaged app launched successfully. Live updater UI verification was blocked
+  when the Mac locked again; a real upgrade from beta 1 to a later build has not
+  yet been exercised. Feed publication/signatures are verified separately.
+- Taildrop to `jw-duo` was attempted twice, including after the user opened
+  Tailscale. Both attempts returned 502; three Tailscale pings timed out. Delivery
+  was not confirmed. A direct public download link was supplied as an alternative.

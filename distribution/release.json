@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0-beta.1",
+  "build": "2",
+  "minimum_macos": "15.0",
+  "bundle_id": "com.josiah.cursorswitch",
+  "team_id": "WZ3MCNC4LD",
+  "signing_identity": "Developer ID Application: Josiah Wood (WZ3MCNC4LD)",
+  "repository": "woodjosiah/cursor-switch-releases",
+  "feed_url": "https://raw.githubusercontent.com/woodjosiah/cursor-switch-releases/main/appcast.xml",
+  "sparkle_key_account": "com.josiah.cursorswitch",
+  "sparkle_public_key": "iQ9QQ6DQ50Dl3p1OutRk8qHeOm+M4LLKx9FBqSh2Uts="
+}

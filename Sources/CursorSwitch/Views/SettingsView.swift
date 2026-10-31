@@ -4,6 +4,7 @@ struct SettingsView: View {
     @Bindable var store: CursorStore
     @State private var fill = Color.clear
     @State private var outline = Color.clear
+    private var updates: UpdateService { .shared }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -114,6 +115,18 @@ struct SettingsView: View {
             if !store.shortcutAvailable {
                 Text("The shortcut is in use by another app. You can still switch from the menu bar.")
                     .font(.callout).foregroundStyle(.secondary)
+            }
+            if updates.isConfigured {
+                HStack {
+                    Text("Version \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")")
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Button(updates.availableVersion == nil ? "Check for Updates…" : "Update Available…") {
+                        updates.checkForUpdates()
+                    }
+                    .disabled(!updates.canCheckForUpdates)
+                }
+                .font(.callout)
             }
         }
     }
