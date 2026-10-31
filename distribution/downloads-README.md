@@ -29,4 +29,4 @@ macOS compatibility layer for system-wide cursor replacement, so fullscreen and
 multi-display behavior may vary between macOS releases.
 
 This repository includes the app's Swift source, tests, build scripts, release
-downloads, and signed update feed. See the main README for build instructions.
+downloads, and signed update feed. See [the developer documentation](../docs/DEVELOPMENT.md) for build instructions.
