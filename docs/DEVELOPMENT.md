@@ -1,6 +1,7 @@
 # Development
 
-Requires macOS 15+, Xcode with Swift 6.2+, and Python 3. Sparkle is pinned in
+Build with Xcode 27 or newer and Python 3. The app supports macOS 15 and later.
+Sparkle is pinned in
 `Package.swift` and `Package.resolved`.
 
 ## Build and test
@@ -21,6 +22,7 @@ Local builds do not enable automatic updates.
 - `Sources/`: SwiftUI settings and menu bar UI, cursor artwork, platform services,
   and saved preferences.
 - `Tests/`: behavior and rendering regression tests.
+- `Resources/AppIcon.icon`: the editable layered app icon, compiled by the build script.
 - `script/`: build, packaging, and notarization tools. Release tools accept
   signing settings through command-line options or environment variables;
   see their `--help`. Maintainer-specific configuration is kept outside Git.

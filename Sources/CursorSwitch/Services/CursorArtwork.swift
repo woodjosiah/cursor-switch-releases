@@ -40,6 +40,7 @@ enum CursorArtwork {
 
     static func image(for profile: CursorProfile) -> NSImage {
         if profile.kind != .shape { return customImage(for: profile) }
+        if profile.shape == .hand { return PointingHandArtwork.image(for: profile) }
         let side = profile.size + padding * 2
         let path = path(for: profile.shape, size: profile.size)
         let fill = profile.fill.nsColor
@@ -61,7 +62,9 @@ enum CursorArtwork {
 
     static func artworkRect(for profile: CursorProfile) -> CGRect {
         var sourceSize = CGSize(width: profile.size, height: profile.size)
-        if profile.kind == .image, let data = profile.imagePNG, let image = NSImage(data: data) {
+        if profile.kind == .shape, profile.shape == .hand {
+            sourceSize = NSCursor.pointingHand.image.size
+        } else if profile.kind == .image, let data = profile.imagePNG, let image = NSImage(data: data) {
             sourceSize = image.size
         } else if profile.kind == .symbol,
                   let image = NSImage(systemSymbolName: profile.symbolName, accessibilityDescription: nil) {
@@ -110,6 +113,9 @@ enum CursorArtwork {
             CGPoint(x: inset + x * extent, y: inset + y * extent)
         }
         switch shape {
+        case .hand:
+            // The native hand is rendered by PointingHandArtwork above.
+            break
         case .arrow:
             let points: [(CGFloat, CGFloat)] = [(0, 0), (0.76, 0.60), (0.45, 0.64),
                 (0.66, 0.94), (0.48, 1), (0.29, 0.70), (0.07, 0.93)]

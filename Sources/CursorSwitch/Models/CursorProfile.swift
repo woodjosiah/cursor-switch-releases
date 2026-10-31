@@ -29,7 +29,7 @@ struct CursorProfile: Codable, Equatable {
         hotspot = try values.decodeIfPresent(CursorHotspot.self, forKey: .hotspot) ?? .automatic
     }
 
-    static let sizeRange = 18.0...96.0
+    static let sizeRange = 18.0...120.0
 
     var sanitized: Self {
         var copy = self

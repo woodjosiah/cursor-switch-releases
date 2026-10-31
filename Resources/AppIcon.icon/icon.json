@@ -1,0 +1,70 @@
+{
+  "fill" : {
+    "automatic-gradient" : "extended-srgb:0.09020,0.14118,0.18431,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill" : "automatic",
+          "image-name" : "Native-Hand.png",
+          "name" : "Ivory pointing hand",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -52,
+              56
+            ]
+          }
+        }
+      ],
+      "name" : "Foreground hand",
+      "position" : {
+        "scale" : 1.29,
+        "translation-in-points" : [
+          0,
+          0
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.85
+      },
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0
+      }
+    },
+    {
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "image-name" : "Native-Arrow.png",
+          "name" : "Mint arrow",
+          "position" : {
+            "scale" : 1.53,
+            "translation-in-points" : [
+              -4,
+              82
+            ]
+          }
+        }
+      ],
+      "name" : "Background arrow",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.55
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.12
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [
+      "macOS"
+    ]
+  }
+}

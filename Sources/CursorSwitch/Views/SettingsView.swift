@@ -9,7 +9,7 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             header
-            modePicker
+            CursorModePicker(store: store)
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     CursorSourceEditor(profile: $store.profile)
@@ -31,44 +31,20 @@ struct SettingsView: View {
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("A cursor of your own.").font(.title2).bold()
-            Text("Switch from the menu bar, anytime.").foregroundStyle(.secondary)
-        }
-    }
-
-    private var modePicker: some View {
-        HStack(spacing: 8) {
-            modeButton("Default", symbol: "cursorarrow", selected: !store.isCustom) { store.selectDefault() }
-            modeButton("Custom", symbol: "cursorarrow.rays", selected: store.isCustom) { store.selectCustom() }
-        }
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel("Cursor mode")
-    }
-
-    private func modeButton(_ title: String, symbol: String, selected: Bool, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack {
-                Label(title, systemImage: symbol)
-                Spacer()
-                Image(systemName: selected ? "checkmark.circle.fill" : "circle")
-                    .foregroundStyle(selected ? Color.orange : Color.secondary)
+        HStack(alignment: .firstTextBaseline, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("A cursor of your own.").font(.title2).bold()
+                Text("Switch from the menu bar, anytime.").foregroundStyle(.secondary)
             }
-            .padding(8)
-            .frame(maxWidth: .infinity)
+            .layoutPriority(1)
+            Spacer(minLength: 0)
+            LoginItemSettings()
         }
-        .buttonStyle(.bordered)
-        .accessibilityAddTraits(selected ? .isSelected : [])
     }
 
     private var controls: some View {
         VStack(spacing: 16) {
-            LabeledContent("Size") {
-                Slider(value: $store.profile.size, in: CursorProfile.sizeRange, step: 1)
-                    .accessibilityLabel("Cursor size")
-                    .accessibilityValue("\(Int(store.profile.size)) points")
-                Text("\(Int(store.profile.size)) pt").monospacedDigit().frame(width: 44, alignment: .trailing)
-            }
+            CursorSizeControl(size: $store.profile.size)
             if store.profile.kind == .shape || store.profile.kind == .symbol {
                 HStack {
                     Text("Fill")
@@ -116,8 +92,6 @@ struct SettingsView: View {
                 Text("The shortcut is in use by another app. You can still switch from the menu bar.")
                     .font(.callout).foregroundStyle(.secondary)
             }
-            Divider()
-            LoginItemSettings()
             if updates.isConfigured {
                 Divider()
                 HStack {

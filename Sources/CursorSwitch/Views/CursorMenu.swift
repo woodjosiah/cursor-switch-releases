@@ -31,6 +31,7 @@ struct CursorMenu: View {
             .disabled(!updates.canCheckForUpdates)
         }
         Divider()
+        Button("About Cursor Switch…") { AboutWindow.shared.show() }
         Button("Quit Cursor Switch") {
             store.selectDefault()
             NSApplication.shared.terminate(nil)

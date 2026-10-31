@@ -24,7 +24,12 @@ def build_app(output: Path, *, universal=False, updates=False, identity="-"):
         raise ValueError("Output must be an app directly inside dist/ or release-dist/.")
     if updates and len(base64.b64decode(CONFIG["sparkle_public_key"], validate=True)) != 32:
         raise ValueError("Invalid Sparkle public key")
-    flags = ["-c", "release"]
+    sdk_version = subprocess.check_output(["xcrun", "--sdk", "macosx", "--show-sdk-version"], text=True).strip()
+    # SwiftPM's linker can otherwise stamp the deployment minimum as the SDK
+    # version, which opts native controls into legacy appearance. Record the
+    # SDK actually used, while keeping the macOS 15 deployment minimum.
+    flags = ["-c", "release", "-Xlinker", "-platform_version", "-Xlinker", "macos",
+             "-Xlinker", CONFIG["minimum_macos"], "-Xlinker", sdk_version]
     if universal:
         flags += ["--arch", "arm64", "--arch", "x86_64"]
     run("swift", "build", *flags, cwd=ROOT)
@@ -63,10 +68,17 @@ def build_app(output: Path, *, universal=False, updates=False, identity="-"):
         "SUAutomaticallyUpdate": False,
         "SUScheduledCheckInterval": 86400,
     }
-    icon = ROOT / ".release-work/AppIcon.icns"
-    if icon.exists():
-        shutil.copy2(icon, contents / "Resources/AppIcon.icns")
-        plist["CFBundleIconFile"] = "AppIcon"
+    # Compile the editable Icon Composer document into the native layered icon
+    # and the backwards-compatible ICNS, even on a fresh checkout.
+    icon_work = ROOT / ".release-work"
+    icon_work.mkdir(exist_ok=True)
+    icon_info = icon_work / "AppIcon-Info.plist"
+    run("xcrun", "actool", ROOT / "Resources/AppIcon.icon",
+        "--compile", contents / "Resources", "--platform", "macosx",
+        "--minimum-deployment-target", CONFIG["minimum_macos"], "--app-icon", "AppIcon",
+        "--output-partial-info-plist", icon_info, "--output-format", "human-readable-text")
+    with icon_info.open("rb") as file:
+        plist.update(plistlib.load(file))
     with (contents / "Info.plist").open("wb") as file:
         plistlib.dump(plist, file)
 

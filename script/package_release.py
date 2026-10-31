@@ -14,18 +14,6 @@ from build_app import ROOT, CONFIG, SPARKLE, build_app, run
 from release_settings import load_release_settings
 
 
-def create_icon(work):
-    png = work / "AppIcon.png"
-    run("xcrun", "swift", ROOT / "script/create_icon.swift", png)
-    iconset = work / "AppIcon.iconset"
-    iconset.mkdir(exist_ok=True)
-    for size in [16, 32, 128, 256, 512]:
-        for scale in [1, 2]:
-            name = f"icon_{size}x{size}{'@2x' if scale == 2 else ''}.png"
-            run("sips", "-z", size * scale, size * scale, png, "--out", iconset / name, stdout=subprocess.DEVNULL)
-    run("iconutil", "-c", "icns", iconset, "-o", work / "AppIcon.icns")
-
-
 def package(args):
     if args.notary_profile and args.identity == "-":
         raise ValueError("Notarization requires a Developer ID Application identity.")
@@ -33,7 +21,6 @@ def package(args):
     work = ROOT / ".release-work"
     dist.mkdir(exist_ok=True)
     work.mkdir(exist_ok=True)
-    create_icon(work)
     app_notarized = False
     if args.prepared_app:
         app = args.prepared_app.resolve()
