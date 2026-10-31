@@ -3,7 +3,7 @@
   "build": "3",
   "minimum_macos": "15.0",
   "bundle_id": "com.josiah.cursorswitch",
-  "repository": "woodjosiah/cursor-switch-releases",
-  "feed_url": "https://raw.githubusercontent.com/woodjosiah/cursor-switch-releases/main/appcast.xml",
+  "repository": "woodjosiah/Cursor-Switch",
+  "feed_url": "https://raw.githubusercontent.com/woodjosiah/Cursor-Switch/main/appcast.xml",
   "sparkle_public_key": "iQ9QQ6DQ50Dl3p1OutRk8qHeOm+M4LLKx9FBqSh2Uts="
 }

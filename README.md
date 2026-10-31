@@ -3,7 +3,7 @@
 Switch between your normal Mac pointer and a custom cursor, right from the menu bar.
 Choose a shape, SF Symbol, emoji, or your own image, then make it your size and color.
 
-**[Download the latest beta](https://github.com/woodjosiah/cursor-switch-releases/releases)**
+**[Download the latest beta](https://github.com/woodjosiah/Cursor-Switch/releases)**
 
 Requires macOS 15 or newer. Works on Apple Silicon and Intel Macs.
 
@@ -35,7 +35,7 @@ Choose **Check for Updates…** in the menu bar to get newer beta builds.
 Custom cursors keep the same appearance over text and links. As this is a beta,
 fullscreen apps and multiple displays may still have quirks.
 
-Found an issue? [Send feedback](https://github.com/woodjosiah/cursor-switch-releases/issues)
+Found an issue? [Send feedback](https://github.com/woodjosiah/Cursor-Switch/issues)
 with your macOS version and a short description of what happened.
 
 ---
