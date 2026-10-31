@@ -11,6 +11,7 @@ import subprocess
 import tempfile
 
 from build_app import ROOT, CONFIG, SPARKLE, build_app, run
+from release_settings import load_release_settings
 
 
 def create_icon(work):
@@ -113,7 +114,7 @@ def package(args):
         private_key = Path(directory) / "sparkle.key"
         previous_umask = os.umask(0o077)
         try:
-            run(SPARKLE / "bin/generate_keys", "--account", CONFIG["sparkle_key_account"], "-x", private_key)
+            run(SPARKLE / "bin/generate_keys", "--account", args.sparkle_account, "-x", private_key)
         finally:
             os.umask(previous_umask)
         private_key.chmod(0o600)
@@ -132,9 +133,14 @@ def package(args):
 
 
 if __name__ == "__main__":
+    settings = load_release_settings()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--identity", default=os.environ.get("CURSOR_SIGNING_IDENTITY", CONFIG.get("signing_identity", "-")))
-    parser.add_argument("--notary-profile", default=os.environ.get("CURSOR_NOTARY_PROFILE"))
+    parser.add_argument("--identity", default=settings.get("signing_identity", "-"))
+    parser.add_argument("--notary-profile", default=settings.get("notary_profile"))
+    parser.add_argument("--sparkle-account", default=settings.get("sparkle_key_account"), help="Sparkle Keychain account (or CURSOR_SPARKLE_KEY_ACCOUNT)")
     parser.add_argument("--prepared-app", type=Path)
     parser.add_argument("--notarized-app", action="store_true")
-    package(parser.parse_args())
+    args = parser.parse_args()
+    if not args.sparkle_account:
+        parser.error("Provide --sparkle-account, CURSOR_SPARKLE_KEY_ACCOUNT, or local release settings.")
+    package(args)

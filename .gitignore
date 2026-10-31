@@ -11,3 +11,10 @@ release-dist/
 *.p8
 *.key
 __pycache__/
+
+# Local maintainer notes, personal configuration, and agent workspace files.
+.private/
+.codex/
+VALIDATION.md
+brand-spec.md
+distribution/downloads-README.md

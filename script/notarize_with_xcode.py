@@ -9,6 +9,7 @@ import subprocess
 import time
 
 from build_app import ROOT, CONFIG, build_app, run
+from release_settings import load_release_settings
 
 
 def submit(app, team, identity):
@@ -71,11 +72,14 @@ def finish_export(archive, team, identity):
 
 
 if __name__ == "__main__":
+    settings = load_release_settings()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--team", default=CONFIG["team_id"])
-    parser.add_argument("--identity", default=CONFIG["signing_identity"])
+    parser.add_argument("--team", default=settings.get("team_id"), help="Developer team ID (or CURSOR_TEAM_ID)")
+    parser.add_argument("--identity", default=settings.get("signing_identity"), help="Developer ID identity (or CURSOR_SIGNING_IDENTITY)")
     parser.add_argument("--finish", action="store_true", help="Finish an existing submission without rebuilding or resubmitting")
     args = parser.parse_args()
+    if not args.team or not args.identity:
+        parser.error("Provide --team and --identity, environment variables, or local release settings.")
     archive = ROOT / ".release-work/CursorSwitch.xcarchive"
     if not args.finish:
         app = build_app(ROOT / "release-dist/CursorSwitch.app", universal=True, updates=True, identity=args.identity)
