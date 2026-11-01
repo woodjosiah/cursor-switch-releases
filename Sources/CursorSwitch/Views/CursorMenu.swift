@@ -3,6 +3,7 @@ import SwiftUI
 struct CursorMenu: View {
     var store: CursorStore
     var updates: UpdateService
+    @Bindable private var clicks = ClickIndicatorStore.shared
 
     var body: some View {
         Text("Cursor Switch")
@@ -17,6 +18,7 @@ struct CursorMenu: View {
             Label("Custom", systemImage: store.isCustom ? "checkmark" : "cursorarrow.rays")
         }
         Divider()
+        Toggle("Show Clicks", isOn: $clicks.settings.isEnabled)
         Button("Switch Cursor") { store.toggle() }
             .keyboardShortcut("c", modifiers: [.control, .option, .command])
         Button("Customize…") { SettingsWindow.shared.show() }

@@ -15,6 +15,8 @@ struct SettingsView: View {
                     CursorSourceEditor(profile: $store.profile)
                     CursorPreview(profile: store.profile)
                     controls
+                    Divider()
+                    ClickIndicatorSettingsView(store: .shared)
                     footer
                 }
                 .padding(.trailing, 2)

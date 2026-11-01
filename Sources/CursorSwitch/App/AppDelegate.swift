@@ -10,10 +10,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
         UpdateService.shared.start()
         CursorStore.shared.shortcutAvailable = shortcut.register()
+        ClickIndicatorStore.shared.start()
         let workspace = NSWorkspace.shared.notificationCenter
         for name in [NSWorkspace.willSleepNotification, NSWorkspace.sessionDidResignActiveNotification,
                      NSWorkspace.screensDidSleepNotification] {
-            workspace.addObserver(self, selector: #selector(restoreDefault), name: name, object: nil)
+            workspace.addObserver(self, selector: #selector(suspendEffects), name: name, object: nil)
+        }
+        for name in [NSWorkspace.didWakeNotification, NSWorkspace.sessionDidBecomeActiveNotification,
+                     NSWorkspace.screensDidWakeNotification] {
+            workspace.addObserver(self, selector: #selector(resumeEffects), name: name, object: nil)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(restoreDefault),
             name: NSApplication.didChangeScreenParametersNotification, object: nil)
@@ -30,10 +35,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    @objc private func restoreDefault() { CursorStore.shared.selectDefault() }
+    @objc private func restoreDefault() {
+        CursorStore.shared.selectDefault()
+        ClickIndicatorStore.shared.clearPulses()
+    }
+
+    @objc private func suspendEffects() {
+        restoreDefault()
+        ClickIndicatorStore.shared.suspend()
+    }
+
+    @objc private func resumeEffects() { ClickIndicatorStore.shared.resume() }
 
     func applicationWillTerminate(_ notification: Notification) {
         CursorStore.shared.selectDefault()
+        ClickIndicatorStore.shared.stop()
         shortcut.unregister()
         NSWorkspace.shared.notificationCenter.removeObserver(self)
         NotificationCenter.default.removeObserver(self)
