@@ -1,4 +1,1 @@
-- Support for Liquid Glass on macOS 27
-- Additional pointer options
-- Search for symbols
-- New app icon
+- Show clicks with Pulse ring or Ripple, with customizable size and colors.

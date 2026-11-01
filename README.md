@@ -24,6 +24,7 @@ Click the menu bar icon and choose **Customize…** to set up your cursor:
 - Click or slide between shapes, symbols, emoji, and your own images. Built-in shapes include a Safari-style hand, and transparent images are supported.
 - Adjust the size up to 120 pt and the available colors, with previews on light and dark backgrounds.
 - Use **Top visible pixel** to align clicks with the tip of your cursor, or choose a manual click point.
+- Highlight clicks with **Pulse ring** or **Ripple**, with your choice of size, color, and a distinct right-click style. Toggle **Show Clicks** from the menu bar.
 - Turn on **Open at login** if you’d like Cursor Switch ready when you sign in.
 
 Choose **Default** or **Custom** from the menu bar to switch, or press
