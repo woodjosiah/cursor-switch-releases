@@ -48,7 +48,7 @@ struct SymbolPicker: View {
                 .frame(maxHeight: 200)
             }
             DisclosureGroup("Use a symbol name…") {
-                TextField("SF Symbol name", text: $symbolName, prompt: Text("star.fill"))
+                TextField("Symbol name", text: $symbolName, prompt: Text("star.fill"))
                     .textFieldStyle(.roundedBorder)
                     .autocorrectionDisabled()
                     .padding(.top, 4)

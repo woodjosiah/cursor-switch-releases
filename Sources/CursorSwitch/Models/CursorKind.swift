@@ -6,7 +6,7 @@ enum CursorKind: String, Codable, CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .shape: "Shape"
-        case .symbol: "SF Symbol"
+        case .symbol: "Symbol"
         case .emoji: "Emoji"
         case .image: "Image"
         }

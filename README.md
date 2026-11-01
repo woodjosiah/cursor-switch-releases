@@ -3,7 +3,7 @@
 # Cursor Switch
 
 Switch between your normal Mac pointer and a custom cursor, right from the menu bar.
-Choose a shape, SF Symbol, emoji, or your own image, then make it your size and color.
+Choose a shape, symbol, emoji, or your own image, then make it your size and color.
 
 **[Download the latest beta](https://github.com/woodjosiah/Cursor-Switch/releases)**
 

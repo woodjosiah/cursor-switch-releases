@@ -6,7 +6,7 @@ More cursor choices and a refreshed native Mac appearance.
 - Cursor type selection uses the native Liquid Glass tab picker on macOS 27, with native segmented controls on earlier systems.
 - A new layered hand-and-arrow app icon uses Icon Composer, with a fallback for older macOS versions.
 - About Cursor Switch shows the app logo, version/build, credits, and a link to josiah.io.
-- Browse SF Symbols visually and search with words like “heart” or “hand”; entering a symbol name is optional.
+- Browse symbols visually and search with words like “heart” or “hand”; entering a symbol name is optional.
 - The emoji input keeps one emoji at a time, including skin tones, flags, and combined emoji.
 - Drag the native glass selection between cursor types on macOS 27.
 - Cursor size now goes up to 120 pt, with gentle size-step feedback on supported Force Touch trackpads.

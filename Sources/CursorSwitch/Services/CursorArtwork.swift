@@ -20,7 +20,7 @@ enum CursorArtwork {
         case .shape: nil
         case .symbol:
             NSImage(systemSymbolName: profile.symbolName, accessibilityDescription: nil) == nil
-                ? "Enter a valid SF Symbol name, or choose one below." : nil
+                ? "Choose a symbol from the list, or enter a valid symbol name." : nil
         case .emoji:
             profile.emoji.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Enter an emoji for your cursor." : nil
         case .image:

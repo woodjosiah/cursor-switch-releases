@@ -64,7 +64,7 @@ def package(args):
         "1. Drag Cursor Switch.app to Applications.\n"
         "2. Eject this disk image.\n"
         "3. Open Cursor Switch from Applications. Its icon appears in the menu bar, not the Dock.\n\n"
-        "Choose Default or Custom from the menu bar. Customize… opens shapes, SF Symbols, emoji, and image import.\n"
+        "Choose Default or Custom from the menu bar. Customize… opens shapes, symbols, emoji, and image import.\n"
         "Control–Option–Command–C switches cursors. Quit restores the normal macOS cursor.\n\n"
         "Use Check for Updates… in the menu bar for later test builds.\n"
         "Requires macOS 15 or newer. Supports Apple Silicon and Intel Macs.\n\n" + signed_note)
