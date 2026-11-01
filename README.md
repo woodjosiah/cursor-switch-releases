@@ -48,3 +48,7 @@ with your macOS version and a short description of what happened.
 Developed with AI assistance using OpenAI Codex.
 
 [Developer documentation](docs/DEVELOPMENT.md)
+
+## License
+
+Copyright © 2026 Josiah Wood. Licensed under the [GNU General Public License v3.0](LICENSE) (`GPL-3.0-only`).
